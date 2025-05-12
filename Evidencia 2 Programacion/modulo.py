@@ -41,17 +41,19 @@ def Agregar_dispositivos(lista_dispositivos):
         
         dispositivo[accion] = 'desactivada'
         
-        if (input("El dispositivo realiza otra accion?: ")).lower() == 'si':
+        seguir = input("El dispositivo realiza otra accion?: ")
+        
+        if  seguir.lower() == "si":
             
             continue
         
-        elif accion.lower() == "no":
+        elif seguir.lower() == "no":
             
             break
         
         else: 
             
-            accion = input("Ingrese una accion valida: ")
+            seguir = input("Ingrese una accion valida: ")
     
     lista_dispositivos.append(dispositivo)
     
@@ -76,6 +78,10 @@ def buscar_dispositivo(lista_dispositivos):
             else:
                  
                 continue
+            
+        print("El dispositivo no fue encontrado")
+        
+        break
             
 def eliminar_dispositivo(lista_dispositivos):
     
