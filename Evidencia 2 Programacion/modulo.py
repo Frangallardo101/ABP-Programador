@@ -8,15 +8,15 @@ def controlar_dispositivos(lista_dispositivos):
         
         if opcion.capitalize() == "A":
             
-            Agregar_dispositivos(lista_dispositivos)
+            print(Agregar_dispositivos(lista_dispositivos))
             
         if opcion.capitalize() == "B":
             
-            listar_dispositivos(lista_dispositivos)
+            print(listar_dispositivos(lista_dispositivos))
         
         if opcion.capitalize() == "C":
             
-            buscar_dispositivo(lista_dispositivos)
+            print(buscar_dispositivo(lista_dispositivos))
         
         if opcion.capitalize() == "D":
             
@@ -31,31 +31,42 @@ def Agregar_dispositivos(lista_dispositivos):
     
     dispositivo = {}
     
-    dispositivo['nombre'] = input("Cual es el dispositivo a agregar?: ")
-    
-    dispositivo['estado'] = 'apagado'
+    funcion_avanzada = 0
        
-    while True :
-        
-        accion = input("Que accion realiza el dispositivo?: ")
-        
-        dispositivo[accion] = 'desactivada'
-        
-        seguir = input("El dispositivo realiza otra accion?: ")
-        
-        if  seguir.lower() == "si":
-            
-            continue
-        
-        elif seguir.lower() == "no":
-            
-            break
-        
-        else: 
-            
-            seguir = input("Ingrese una accion valida: ")
+    while True : 
+       
+        dispositivo['nombre'] = input("Cual es el dispositivo a agregar?: ")
     
-    lista_dispositivos.append(dispositivo)
+        dispositivo['estado'] = 0 
+         
+        marca  =  input("Que marca es el producto?: ") #
+        
+        dispositivo['Marca'] = marca # Agregamos el valor al diccionario, ahora la clave marca tiene el valor que le asigne el usuario
+        
+        print("Niveles de acceso:  1.invitado 2.Niños 3.padres ")
+        
+        nivel_acceso = int((input("Que nivel de acceso requiere el dispositivo?: ")))
+        if nivel_acceso not in (1,2,3):
+            
+            nivel_acceso = print("El valor no es correcto, intente de nuevo: ")
+            
+        dispositivo['nivel_acceso'] = nivel_acceso# Agregamos el valor al diccionario, ahora la clave nivel_acceso tiene el valor que le asigne el usuario
+                                 
+        funcion = input("Tiene funciones avanzadas?: ").lower()
+        
+        if  funcion == "si" :
+            
+            funcion_avanzada  =  1
+            
+        elif funcion == "no": 
+            
+            continue  
+        
+        dispositivo['funcion_avanzada'] = funcion_avanzada
+        
+        lista_dispositivos.append(dispositivo)
+        
+        return "El dispositivo se agrego correctamente"
     
 def listar_dispositivos(lista_dispositivos):
     
@@ -69,19 +80,17 @@ def buscar_dispositivo(lista_dispositivos):
     
     while True:
         
-        for i in lista_dispositivos:
+        for dispositivo in lista_dispositivos:
             
-            if dispositivo in i.items():
+            if dispositivo in dispositivo.items():
                 
-                print(i)
+                return (dispositivo)
             
             else:
                  
                 continue
             
-        print("El dispositivo no fue encontrado")
-        
-        break
+        return "El dispositivo no fue encontrado"
             
 def eliminar_dispositivo(lista_dispositivos):
     
